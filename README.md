@@ -15,7 +15,7 @@ A python utility to pull android database files of a particular app from an emul
 ###Usage
 
 ```bash
-python dbdump app_packagename [destination_dir] [--device devicename] [--file my_dbfile.db]
+python dbdump app_packagename [destination_dir] [--device devicename] [--db my_dbfile.db]
 ```
 
 ###Example
