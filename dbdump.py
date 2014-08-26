@@ -283,7 +283,7 @@ def parse_agrs_and_start(argv=[]):
     '''
     length = len(argv)
     if length < 2:
-        print 'usage: python dbdump.py app_packagename [destination_dir] [--device devicename] [--file my_dbfile.db]'
+        print 'usage: python dbdump.py app_packagename [destination_dir] [--device devicename] [--db my_dbfile.db]'
         return
 
     app_package_name = parse_app_package_name(argv[1:])
