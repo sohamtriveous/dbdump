@@ -71,28 +71,6 @@ def add_adb_device(devicename=None):
         cmd = cmd + '-s ' + devicename + ' '
     return cmd
 
-
-def del_files(devicename, path, filenames=[]):
-    '''
-    delete files at a particular path
-    :param devicename: device
-    :param path: path to be deleted
-    :return:
-    '''
-    # add device whenever necessary
-    cmd = add_adb_device(devicename)
-    # command for deleting the file
-    cmd = cmd + 'shell rm -r '
-    for filename in filenames:
-        new_cmd = cmd + path + '/' + filename
-        (status, output) = commands.getstatusoutput(new_cmd)
-        if status:
-            print 'Could not delete', path, sys.stderr
-            return False
-        else:
-            return True
-
-
 def del_folder(devicename, path):
     '''
     delete files at a particular path
@@ -218,25 +196,6 @@ def db_files_list(path, db_files=None, devicename=None):
                     filenames.append(filename)
         return filenames
 
-
-def db_copy(from_path, to_path, filenames=[], devicename=None):
-    '''
-    Copy files locally on the emulator
-    :param from_path: source
-    :param to_path: destination
-    :param filenames: file name (which will be attached to the from path)
-    :param devicename: device name
-    :return:
-    '''
-    # add device whenever necessary
-    cmd = add_adb_device(devicename)
-    for filename in filenames:
-        path = from_path + '/' + filename
-        total_cmd = cmd + 'shell cp ' + path + ' ' + to_path
-        exec_cmd(total_cmd)
-    return
-
-
 def db_pull(temp_path, to_path, filenames=[], devicename=None):
     '''
     Pulls individual files from the device to the computer directory
@@ -247,7 +206,7 @@ def db_pull(temp_path, to_path, filenames=[], devicename=None):
     :return:
     '''
     for filename in filenames:
-        print 'Copying', filename, '-->', to_path
+        print 'Pulling', filename, '-->', to_path
         pull_files(to_path, temp_path + '/' + filename, devicename)
 
 
@@ -262,15 +221,9 @@ def begin_dump(app_package_name, destination_dir, devicename=None, db_files=[]):
     '''
     database_base_path = '/data/data/'
     database_path = database_base_path + app_package_name + '/databases'
-    temp_path = '/mnt/sdcard/tmp_dbdump'
 
     filenames = db_files_list(database_path, db_files, devicename)
-    cmd = add_adb_device(devicename)
-    exec_cmd(cmd + ' shell mkdir ' + temp_path)
-    db_copy(database_path, temp_path, filenames, devicename)
-    db_pull(temp_path, destination_dir, filenames, devicename)
-    del_files(devicename, temp_path, filenames)
-    del_folder(devicename, temp_path)
+    db_pull(database_path, destination_dir, filenames, devicename)
     print 'Done!'
     return
 
