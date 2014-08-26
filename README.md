@@ -1,14 +1,14 @@
 dbdump
 ======
 
-A python utility to pull android database files of a particular app from an emulator without going through all the regular 'adb shell' shenanigans, features:
+A python utility to pull android database files of a particular app from an emulator without having to go through all the regular adb shenanigans every time, features:
 - pulls the .db files from the databases folder to a local directory on your dev computer (you can then analyze this using sqlitebrowser: http://sourceforge.net/projects/sqlitebrowser/)
 - supports multiple devices
 - supports selective db file pulls
 - tested on a Genymotion emulator
 
 ###Prerequisites
-- python installation :)
+- python
 - access to adb on the system path
 - assuming adb has native root access to the emulator/device
 
