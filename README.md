@@ -15,7 +15,7 @@ A python utility to pull android database files of a particular app from an emul
 ###Usage
 
 ```bash
-python dbdump app_packagename [destination_dir] [--device devicename] [--db my_dbfile.db]
+python dbdump.py app_packagename [destination_dir] [--device devicename] [--db my_dbfile.db]
 ```
 
 ###Example
@@ -23,13 +23,13 @@ python dbdump app_packagename [destination_dir] [--device devicename] [--db my_d
 To pull all the database files from my app (package: com.myorg.myapp) to the current folder
 
 ```bash
-python dbdump com.myorg.myapp
+python dbdump.py com.myorg.myapp
 ```
 
 To pull a particular db file (my_db_name.db) from my app (package: com.myorg.myapp) on a particular emulator(192.168.56.101:5555) to the desktop on a mac
 
 ```bash
-python dbdump com.myorg.myapp ~/Desktop --device 192.168.56.101:5555 --db my_db_name.db
+python dbdump.py com.myorg.myapp ~/Desktop --device 192.168.56.101:5555 --db my_db_name.db
 ```
 
 The device id that needs to be passed in --device can be obtained from adb devices
