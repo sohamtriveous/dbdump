@@ -40,3 +40,6 @@ The device id that needs to be passed in --device can be obtained from adb devic
 Copying my_db_name.db --> ~/Desktop
 Done!
 ```
+
+As seen on:
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-dbdump-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/930)
